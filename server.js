@@ -10,8 +10,17 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/user', (req, res, next) => {
-    res.send('You need to log in');
+app.use(['/user/settings', '/user/panel'], (req, res, next) => {
+    // the user is not logged in by default
+    const isLoggedIn = false;
+
+    if(isLoggedIn) {
+        // if its logged in do a next endpoint
+        next();
+    } else {
+        // if its not logged in show an info to do that first
+        res.send('You have to log in.');
+    }
   });
 
 app.use(express.static(path.join(__dirname, '/public')));
