@@ -33,6 +33,10 @@ app.get('/about', (req, res) => {
   res.show('about.html');
 });
 
+app.use((req, res) => {
+    res.status(404).show('error.html');
+  })
+
 app.listen(8000, () => {
   console.log('Server is running on port: 8000');
 });
