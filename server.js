@@ -10,6 +10,10 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use('/user', (req, res, next) => {
+    res.send('You need to log in');
+  });
+
 app.use(express.static(path.join(__dirname, '/public')));
 
 app.get(['/', '/home'], (req, res) => {
